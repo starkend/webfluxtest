@@ -1,1 +1,11 @@
 # webfluxtest
+
+WebFlux proof of concept
+
+# Built with
+- **Spring Boot**
+- **WebFlux**
+- **MongoDB**
+  - **Run via Docker**
+    - docker run -d -p 27017-27019:27017-27019 --name mongodb3 mongo:latest
+
