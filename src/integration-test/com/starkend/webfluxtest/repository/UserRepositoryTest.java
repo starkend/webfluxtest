@@ -26,7 +26,7 @@ public class UserRepositoryTest {
 
         System.out.println(saveUser.block());
 
-        Mono<User> findUser = userRepository.findById("1");
+        Mono<User> findUser = userRepository.findById("2");
 
         System.out.println(findUser.block());
         System.out.println("Done");
