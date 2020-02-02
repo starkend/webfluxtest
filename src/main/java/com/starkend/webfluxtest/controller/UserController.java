@@ -45,4 +45,10 @@ public class UserController {
         return userFlux;
     }
 
+    @GetMapping("/findUserByPartialName")
+    public Flux<User> findUserByPartialName(@RequestParam String userName) {
+        Flux<User> userFlux = userRepository.findByNameContaining(userName);
+
+        return userFlux;
+    }
 }
