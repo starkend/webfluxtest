@@ -38,4 +38,11 @@ public class UserRepositoryTest {
         List<User> userList = allUsers.collectList().block();
         userList.forEach(user -> System.out.println(user.toString()));
     }
+
+    @Test
+    public void whenFindByName_thenSucceed() {
+        Flux<User> users = userRepository.findByName("Bobbie");
+        List<User> bobbies = users.collectList().block();
+        bobbies.forEach(user -> System.out.println(user.toString()));
+    }
 }
