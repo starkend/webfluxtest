@@ -38,5 +38,11 @@ public class UserController {
         return saveUser;
     }
 
+    @GetMapping("/findUser")
+    public Flux<User> findUser(@RequestParam String userName) {
+        Flux<User> userFlux = userRepository.findByName(userName);
+
+        return userFlux;
+    }
 
 }
