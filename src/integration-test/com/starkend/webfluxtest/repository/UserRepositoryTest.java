@@ -34,6 +34,7 @@ public class UserRepositoryTest {
         Flux<User> allUsers = userRepository.findAll();
         List<User> userList = allUsers.collectList().block();
         userList.forEach(user -> System.out.println(user.toString()));
+        assertTrue(userList.size() > 0);
     }
 
     @Test
