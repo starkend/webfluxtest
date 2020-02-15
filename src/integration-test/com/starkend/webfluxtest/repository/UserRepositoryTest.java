@@ -50,6 +50,8 @@ public class UserRepositoryTest {
         Flux<User> users = userRepository.findByNameContaining("Bob");
         List<User> bobs = users.collectList().block();
         bobs.forEach(user -> System.out.println(user.toString()));
+
+        assertTrue(bobs.size() > 1);
     }
 
     @Test
