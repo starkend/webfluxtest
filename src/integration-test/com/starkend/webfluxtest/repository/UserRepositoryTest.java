@@ -12,6 +12,8 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
+import static org.junit.Assert.assertTrue;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = WebfluxtestApplication.class)
 public class UserRepositoryTest {
@@ -51,5 +53,11 @@ public class UserRepositoryTest {
         Flux<User> users = userRepository.findByNameContaining("Bob");
         List<User> bobs = users.collectList().block();
         bobs.forEach(user -> System.out.println(user.toString()));
+    }
+
+    @Test
+    public void whenExistsById_thenSucceed() {
+        Mono<Boolean> userExists = userRepository.existsById("2");
+        assertTrue(userExists.block());
     }
 }
