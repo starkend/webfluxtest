@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = WebfluxtestApplication.class)
@@ -22,16 +22,11 @@ public class UserRepositoryTest {
     UserRepository userRepository;
 
     @Test
-    public void whenInsertAndFindUser_thenSucceed() {
+    public void whenInsertUser_thenSucceed() {
         User user = new User("2", "Carol");
         Mono<User> saveUser = userRepository.save(user);
 
-        System.out.println(saveUser.block());
-
-        Mono<User> findUser = userRepository.findById("2");
-
-        System.out.println(findUser.block());
-        System.out.println("Done");
+        assertNotNull(saveUser.block());
     }
 
     @Test
