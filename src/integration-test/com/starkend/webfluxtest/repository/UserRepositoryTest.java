@@ -59,4 +59,10 @@ public class UserRepositoryTest {
         Mono<Boolean> userExists = userRepository.existsById("2");
         assertTrue(userExists.block());
     }
+
+    @Test
+    public void whenGetUserCount_thenSucceed() {
+        Mono<Long> userCount = userRepository.count();
+        assertTrue(userCount.block() > 0);
+    }
 }
