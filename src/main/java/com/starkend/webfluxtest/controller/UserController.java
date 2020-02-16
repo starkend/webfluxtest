@@ -51,4 +51,9 @@ public class UserController {
 
         return userFlux;
     }
+
+    @GetMapping("/userExists")
+    public Mono<Boolean> userExists(@RequestParam String userId) {
+        return userRepository.existsById(userId);
+    }
 }
