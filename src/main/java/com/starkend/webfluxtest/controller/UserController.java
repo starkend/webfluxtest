@@ -56,4 +56,9 @@ public class UserController {
     public Mono<Boolean> userExists(@RequestParam String userId) {
         return userRepository.existsById(userId);
     }
+
+    @GetMapping("userCount")
+    public Mono<Long> userCount() {
+        return userRepository.count();
+    }
 }
