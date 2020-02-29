@@ -2,6 +2,7 @@ package com.starkend.webfluxtest.controller;
 
 import com.starkend.webfluxtest.model.User;
 import com.starkend.webfluxtest.repository.UserRepository;
+import com.starkend.webfluxtest.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,14 +20,16 @@ public class UserController {
 
     private Logger LOG = LoggerFactory.getLogger(UserController.class);
     private UserRepository userRepository;
+    private UserService userService;
 
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @GetMapping("/users")
     public Flux<User> getAllUsers() {
-        Flux<User> userFlux = userRepository.findAll();
+        Flux<User> userFlux = userService.findAllUsers();
 
         return userFlux;
     }
