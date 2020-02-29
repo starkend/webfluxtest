@@ -3,8 +3,6 @@ package com.starkend.webfluxtest.service;
 import com.starkend.webfluxtest.model.User;
 import com.starkend.webfluxtest.repository.UserRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -13,7 +11,7 @@ import java.util.UUID;
 @Service
 public class UserService {
 
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
