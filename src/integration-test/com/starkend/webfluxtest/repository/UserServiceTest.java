@@ -10,6 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static org.junit.Assert.assertTrue;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = WebfluxtestApplication.class)
 public class UserServiceTest {
@@ -22,6 +24,8 @@ public class UserServiceTest {
         List<String> prettyPrintUsers = userService.getPrettyPrintUsers();
 
         prettyPrintUsers.forEach(s -> System.out.println(s));
+
+        prettyPrintUsers.forEach(s -> assertTrue(s.matches(".+ - .+")));
     }
 
 }
