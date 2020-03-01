@@ -3,8 +3,6 @@ package com.starkend.webfluxtest.controller;
 import com.starkend.webfluxtest.model.User;
 import com.starkend.webfluxtest.repository.UserRepository;
 import com.starkend.webfluxtest.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +14,6 @@ import reactor.core.publisher.Mono;
 @RequestMapping("wf")
 public class UserController {
 
-    private Logger LOG = LoggerFactory.getLogger(UserController.class);
     private UserService userService;
 
     public UserController(UserRepository userRepository, UserService userService) {
