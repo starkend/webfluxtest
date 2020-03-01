@@ -6,7 +6,10 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -40,5 +43,14 @@ public class UserService {
     public Mono<Long> userCount() {
         return userRepository.count();
     }
+
+    public List<String> getPrettyPrintUsers() {
+        List<User> allUserList = findAllUsers().collectList().block();
+
+        return allUserList.stream().map(user ->
+            String.format("%s - %s", user.getName(), user.getId())
+        ).collect(Collectors.toList());
+    }
+
 
 }
