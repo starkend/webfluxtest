@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -21,11 +22,11 @@ public class UserServiceTest {
 
     @Test
     public void whenGetPrettyPrintUsers_thenSucceed() {
-//        List<String> prettyPrintUsers = userService.getPrettyPrintUsers();
-//
-//        prettyPrintUsers.forEach(s -> System.out.println(s));
-//
-//        prettyPrintUsers.forEach(s -> assertTrue(s.matches(".+ - .+")));
+        List<String> prettyPrintUsers = userService.getPrettyPrintUsers().collectList().block();
+
+        prettyPrintUsers.forEach(s -> System.out.println(s));
+
+        prettyPrintUsers.forEach(s -> assertTrue(s.matches(".+ - .+")));
     }
 
 }
