@@ -43,13 +43,25 @@ public class UserService {
         return userRepository.count();
     }
 
-    public List<String> getPrettyPrintUsers() {
-        List<User> allUserList = findAllUsers().collectList().block();
+    public Flux<String> getPrettyPrintUsers() {
+        Flux<User> allUserList = findAllUsers();
 
-        return allUserList.stream().map(user ->
-                String.format("%s - %s", user.getName(), user.getId())
-        ).collect(Collectors.toList());
+        Flux<String> userFlux = allUserList.map(
+                user ->
+                String.format("%s - %s ", user.getName(), user.getId())
+        );
+
+        return userFlux;
+
     }
 
+//    public List<String> getPrettyPrintUsers() {
+//        List<User> allUserList = findAllUsers().collectList().block();
+//
+//        return allUserList.stream().map(user ->
+//                String.format("%s - %s", user.getName(), user.getId())
+//        ).collect(Collectors.toList());
+//    }
+//
 
 }

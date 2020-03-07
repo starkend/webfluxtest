@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("wf")
 public class UserController {
@@ -48,5 +50,10 @@ public class UserController {
     @GetMapping("userCount")
     public Mono<Long> userCount() {
         return userService.userCount();
+    }
+
+    @GetMapping("usersPP")
+    public Flux<String> getUsersPP() {
+        return userService.getPrettyPrintUsers();
     }
 }
