@@ -42,8 +42,9 @@ public class UserController {
     }
 
     @GetMapping("/userExists")
-    public Mono<Boolean> userExists(@RequestParam String userId) {
-        return userService.userExists(userId);
+    public Mono<ResponseEntity<Boolean>> userExists(@RequestParam String userId) {
+        return userService.userExists(userId)
+                .map(exists -> ResponseEntity.ok(exists));
     }
 
     @GetMapping("userCount")
