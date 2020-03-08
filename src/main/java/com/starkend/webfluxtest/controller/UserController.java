@@ -3,6 +3,7 @@ package com.starkend.webfluxtest.controller;
 import com.starkend.webfluxtest.model.User;
 import com.starkend.webfluxtest.repository.UserRepository;
 import com.starkend.webfluxtest.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,8 +47,9 @@ public class UserController {
     }
 
     @GetMapping("userCount")
-    public Mono<Long> userCount() {
-        return userService.userCount();
+    public Mono<ResponseEntity<Long>> userCount() {
+        return userService.userCount()
+                .map(count -> ResponseEntity.ok(count));
     }
 
     @GetMapping("usersPP")
