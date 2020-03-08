@@ -27,8 +27,9 @@ public class UserController {
     }
 
     @GetMapping("/saveUser")
-    public Mono<User> saveUser(@RequestParam String userName) {
-        return userService.saveUser(userName);
+    public Mono<ResponseEntity<User>> saveUser(@RequestParam String userName) {
+        return userService.saveUser(userName)
+                .map(user -> ResponseEntity.ok(user));
     }
 
     @GetMapping("/findUser")
