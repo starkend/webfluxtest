@@ -42,12 +42,8 @@ public class UserService {
     }
 
     public Flux<String> getPrettyPrintUsers() {
-        Flux<User> allUserList = findAllUsers();
-
-        Flux<String> userFlux = allUserList.map(
+        return findAllUsers().map(
                 user -> String.format("%s - %s ", user.getName(), user.getId()));
-
-        return userFlux;
     }
 
     public Flux<String> getAllUserIds() {
