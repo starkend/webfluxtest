@@ -36,4 +36,11 @@ public class UserServiceTest {
         allUserIds.forEach(u -> assertFalse(u.isEmpty()));
     }
 
+    @Test
+    public void whenGetUsersByNameOnly_thenSucceed() {
+        List<String> matchingUsers = userService.getUsersByPartialNameOnly("Bob").collectList().block();
+
+        matchingUsers.forEach(u -> System.out.println(u));
+        assertFalse(matchingUsers.isEmpty());
+    }
 }

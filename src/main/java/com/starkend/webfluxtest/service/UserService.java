@@ -49,4 +49,9 @@ public class UserService {
     public Flux<String> getAllUserIds() {
         return findAllUsers().map(user -> user.getId());
     }
+
+    public Flux<String> getUsersByPartialNameOnly(String partialName) {
+        return findUserByPartialName(partialName)
+                .map(user -> user.getName());
+    }
 }
