@@ -25,7 +25,6 @@ public class UserServiceTest {
         List<String> prettyPrintUsers = userService.getPrettyPrintUsers().collectList().block();
 
         prettyPrintUsers.forEach(s -> System.out.println(s));
-
         prettyPrintUsers.forEach(s -> assertTrue(s.matches(".+ - .+")));
     }
 
@@ -34,7 +33,6 @@ public class UserServiceTest {
         List<String> allUserIds = userService.getAllUserIds().collectList().block();
 
         allUserIds.forEach(u -> System.out.println(u));
-
         allUserIds.forEach(u -> assertFalse(u.isEmpty()));
     }
 

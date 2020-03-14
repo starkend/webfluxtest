@@ -45,19 +45,12 @@ public class UserService {
         Flux<User> allUserList = findAllUsers();
 
         Flux<String> userFlux = allUserList.map(
-                user ->
-                        String.format("%s - %s ", user.getName(), user.getId())
-        );
+                user -> String.format("%s - %s ", user.getName(), user.getId()));
 
         return userFlux;
-
     }
 
     public Flux<String> getAllUserIds() {
-        return findAllUsers().map(
-                user ->
-                        user.getId()
-        );
-
+        return findAllUsers().map(user -> user.getId());
     }
 }
