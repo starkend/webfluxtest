@@ -33,7 +33,7 @@ public class UserServiceTest {
         List<String> allUserIds = userService.getAllUserIds().collectList().block();
 
         allUserIds.forEach(u -> System.out.println(u));
-        allUserIds.forEach(u -> assertFalse(u.isEmpty()));
+        assertFalse(allUserIds.isEmpty());
     }
 
     @Test
