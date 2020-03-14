@@ -52,4 +52,12 @@ public class UserService {
         return userFlux;
 
     }
+
+    public Flux<String> getAllUserIds() {
+        return findAllUsers().map(
+                user ->
+                        user.getId()
+        );
+
+    }
 }

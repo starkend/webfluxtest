@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
@@ -26,6 +27,15 @@ public class UserServiceTest {
         prettyPrintUsers.forEach(s -> System.out.println(s));
 
         prettyPrintUsers.forEach(s -> assertTrue(s.matches(".+ - .+")));
+    }
+
+    @Test
+    public void whenGetAllUserIds_thenSucceed() {
+        List<String> allUserIds = userService.getAllUserIds().collectList().block();
+
+        allUserIds.forEach(u -> System.out.println(u));
+
+        allUserIds.forEach(u -> assertFalse(u.isEmpty()));
     }
 
 }
