@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -23,8 +24,8 @@ public class UserRepositoryTest {
     UserRepository userRepository;
 
     @Test
-    public void whenFindAllByExample_thenSucceed() {
-        Flux<User> allUsers = userRepository.findAll(Example.of(new User()));
+    public void whenFindAllByExampleSortByName_thenSucceed() {
+        Flux<User> allUsers = userRepository.findAll(Example.of(new User()), Sort.by(Sort.Direction.ASC, "name"));
         List<User> userList = allUsers.collectList().block();
         userList.forEach(user -> System.out.println(user.toString()));
         assertTrue(userList.size() > 0);
