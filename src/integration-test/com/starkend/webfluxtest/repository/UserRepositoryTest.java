@@ -26,16 +26,13 @@ public class UserRepositoryTest {
     @Test
     public void whenFindAllByExampleSortByName_thenSucceed() {
         Flux<User> allUsers = userRepository.findAll(Example.of(new User()), Sort.by(Sort.Direction.ASC, "name"));
-        List<User> userList = allUsers.collectList().block();
-        userList.forEach(user -> System.out.println(user.toString()));
-        assertTrue(userList.size() > 0);
+        verifyFlux(allUsers, 0);
     }
+
     @Test
     public void whenFindAllByExampleSortById_thenSucceed() {
         Flux<User> allUsers = userRepository.findAll(Example.of(new User()), Sort.by(Sort.Direction.ASC, "id"));
-        List<User> userList = allUsers.collectList().block();
-        userList.forEach(user -> System.out.println(user.toString()));
-        assertTrue(userList.size() > 0);
+        verifyFlux(allUsers, 0);
     }
 
     @Test
@@ -49,26 +46,19 @@ public class UserRepositoryTest {
     @Test
     public void whenFindAll_thenSucceed() {
         Flux<User> allUsers = userRepository.findAll();
-        List<User> userList = allUsers.collectList().block();
-        userList.forEach(user -> System.out.println(user.toString()));
-        assertTrue(userList.size() > 0);
+        verifyFlux(allUsers, 0);
     }
 
     @Test
     public void whenFindByName_thenSucceed() {
         Flux<User> users = userRepository.findByName("Bobbie");
-        List<User> bobbies = users.collectList().block();
-        bobbies.forEach(user -> System.out.println(user.toString()));
-        assertTrue(bobbies.size() > 0);
+        verifyFlux(users, 0);
     }
 
     @Test
     public void whenFindByNameContaining_thenSucceed() {
         Flux<User> users = userRepository.findByNameContaining("Bob");
-        List<User> bobs = users.collectList().block();
-        bobs.forEach(user -> System.out.println(user.toString()));
-
-        assertTrue(bobs.size() > 1);
+        verifyFlux(users, 1);
     }
 
     @Test
@@ -81,5 +71,11 @@ public class UserRepositoryTest {
     public void whenGetUserCount_thenSucceed() {
         Mono<Long> userCount = userRepository.count();
         assertTrue(userCount.block() > 0);
+    }
+
+    private void verifyFlux(Flux<User> allUsers, int i) {
+        List<User> userList = allUsers.collectList().block();
+        userList.forEach(user -> System.out.println(user.toString()));
+        assertTrue(userList.size() > i);
     }
 }
