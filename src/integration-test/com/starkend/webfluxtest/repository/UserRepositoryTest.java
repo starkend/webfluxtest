@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -20,6 +21,14 @@ public class UserRepositoryTest {
 
     @Autowired
     UserRepository userRepository;
+
+    @Test
+    public void whenFindAllByExample_thenSucceed() {
+        Flux<User> allUsers = userRepository.findAll(Example.of(new User()));
+        List<User> userList = allUsers.collectList().block();
+        userList.forEach(user -> System.out.println(user.toString()));
+        assertTrue(userList.size() > 0);
+    }
 
     @Test
     public void whenInsertUser_thenSucceed() {
