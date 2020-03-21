@@ -30,6 +30,13 @@ public class UserRepositoryTest {
         userList.forEach(user -> System.out.println(user.toString()));
         assertTrue(userList.size() > 0);
     }
+    @Test
+    public void whenFindAllByExampleSortById_thenSucceed() {
+        Flux<User> allUsers = userRepository.findAll(Example.of(new User()), Sort.by(Sort.Direction.ASC, "id"));
+        List<User> userList = allUsers.collectList().block();
+        userList.forEach(user -> System.out.println(user.toString()));
+        assertTrue(userList.size() > 0);
+    }
 
     @Test
     public void whenInsertUser_thenSucceed() {
