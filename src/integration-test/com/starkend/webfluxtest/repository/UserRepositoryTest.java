@@ -14,7 +14,8 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = WebfluxtestApplication.class)
