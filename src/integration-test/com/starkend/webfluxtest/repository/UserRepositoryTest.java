@@ -27,13 +27,13 @@ public class UserRepositoryTest {
     @Test
     public void whenFindAllByExampleSortByName_thenSucceed() {
         Flux<User> allUsers = userRepository.findAll(Example.of(new User()), Sort.by(Sort.Direction.ASC, "name"));
-        verifyFlux(allUsers, 0);
+        verifyFluxIsPopulated(allUsers, 0);
     }
 
     @Test
     public void whenFindAllByExampleSortById_thenSucceed() {
         Flux<User> allUsers = userRepository.findAll(Example.of(new User()), Sort.by(Sort.Direction.ASC, "id"));
-        verifyFlux(allUsers, 0);
+        verifyFluxIsPopulated(allUsers, 0);
     }
 
     @Test
@@ -47,19 +47,19 @@ public class UserRepositoryTest {
     @Test
     public void whenFindAll_thenSucceed() {
         Flux<User> allUsers = userRepository.findAll();
-        verifyFlux(allUsers, 0);
+        verifyFluxIsPopulated(allUsers, 0);
     }
 
     @Test
     public void whenFindByName_thenSucceed() {
         Flux<User> users = userRepository.findByName("Bobbie");
-        verifyFlux(users, 0);
+        verifyFluxIsPopulated(users, 0);
     }
 
     @Test
     public void whenFindByNameContaining_thenSucceed() {
         Flux<User> users = userRepository.findByNameContaining("Bob");
-        verifyFlux(users, 1);
+        verifyFluxIsPopulated(users, 1);
     }
 
     @Test
@@ -74,7 +74,7 @@ public class UserRepositoryTest {
         assertTrue(userCount.block() > 0);
     }
 
-    private void verifyFlux(Flux<User> allUsers, int sizeLowerBound) {
+    private void verifyFluxIsPopulated(Flux<User> allUsers, int sizeLowerBound) {
         List<User> userList = allUsers.collectList().block();
         userList.forEach(user -> System.out.println(user.toString()));
         assertTrue(userList.size() > sizeLowerBound);
