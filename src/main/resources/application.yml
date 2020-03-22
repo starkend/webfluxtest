@@ -5,8 +5,15 @@ management:
   endpoint:
     health:
       enabled: true
+    info:
+      enabled: true
 
 spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/mongodb3
+
+info:
+  app:
+    name: webfluxtest
+    description: Reactive Mongo Test App with Webflux
