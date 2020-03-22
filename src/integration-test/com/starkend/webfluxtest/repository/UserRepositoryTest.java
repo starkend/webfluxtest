@@ -74,9 +74,9 @@ public class UserRepositoryTest {
         assertTrue(userCount.block() > 0);
     }
 
-    private void verifyFlux(Flux<User> allUsers, int i) {
+    private void verifyFlux(Flux<User> allUsers, int sizeLowerBound) {
         List<User> userList = allUsers.collectList().block();
         userList.forEach(user -> System.out.println(user.toString()));
-        assertTrue(userList.size() > i);
+        assertTrue(userList.size() > sizeLowerBound);
     }
 }
