@@ -1,7 +1,6 @@
-package com.starkend.webfluxtest.repository;
+package com.starkend.webfluxtest.user;
 
 import com.starkend.webfluxtest.WebfluxtestApplication;
-import com.starkend.webfluxtest.user.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
