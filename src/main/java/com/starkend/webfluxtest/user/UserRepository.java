@@ -1,6 +1,5 @@
-package com.starkend.webfluxtest.repository;
+package com.starkend.webfluxtest.user;
 
-import com.starkend.webfluxtest.model.User;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;

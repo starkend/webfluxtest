@@ -1,7 +1,5 @@
-package com.starkend.webfluxtest.service;
+package com.starkend.webfluxtest.user;
 
-import com.starkend.webfluxtest.model.User;
-import com.starkend.webfluxtest.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

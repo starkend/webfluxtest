@@ -1,4 +1,4 @@
-package com.starkend.webfluxtest.model;
+package com.starkend.webfluxtest.user;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

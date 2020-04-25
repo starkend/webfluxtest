@@ -1,8 +1,5 @@
-package com.starkend.webfluxtest.controller;
+package com.starkend.webfluxtest.user;
 
-import com.starkend.webfluxtest.model.User;
-import com.starkend.webfluxtest.repository.UserRepository;
-import com.starkend.webfluxtest.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
