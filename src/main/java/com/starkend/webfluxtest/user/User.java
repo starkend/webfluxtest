@@ -3,17 +3,14 @@ package com.starkend.webfluxtest.user;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotBlank;
-
 @Document(collection = "users")
 public class User {
     @Id
     private String id;
 
-    @NotBlank
     private String name;
 
-    public User(String id, @NotBlank String name) {
+    public User(String id, String name) {
         this.id = id;
         this.name = name;
     }
