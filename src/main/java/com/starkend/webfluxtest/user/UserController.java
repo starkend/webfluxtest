@@ -16,9 +16,8 @@ import reactor.core.publisher.Mono;
 @RequestMapping("wf")
 public class UserController {
 
-    private UserService userService;
-
     private final Logger LOG = LoggerFactory.getLogger(UserController.class);
+    private final UserService userService;
 
     public UserController(UserRepository userRepository, UserService userService) {
         this.userService = userService;
@@ -26,7 +25,8 @@ public class UserController {
 
     @GetMapping("/users")
     public Flux<User> getAllUsers() {
-        return userService.findAllUsers();
+        return userService.findAllUsers()
+                .doOnError(e -> LOG.error(String.valueOf(e)));
     }
 
     @GetMapping("/saveUser")
