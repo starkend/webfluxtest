@@ -17,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 public class UserServiceTest {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Test
     public void whenGetPrettyPrintUsers_thenSucceed() {
