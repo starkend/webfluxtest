@@ -52,4 +52,8 @@ public class UserService {
         return findUserByPartialName(partialName)
                 .map(user -> user.getName());
     }
+
+    public Mono<Void> deleteUserById(String id) {
+        return userRepository.deleteById(id);
+    }
 }

@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -49,5 +50,15 @@ public class UserServiceTest {
         String USER_NAME = "Bort";
         Mono<User> user = userService.saveUser(USER_NAME);
         assertTrue(USER_NAME.equalsIgnoreCase(user.block().getName()));
+    }
+
+    @Test
+    public void whenDeleteUser_thenSucceed() {
+        String USER_NAME = "Delete User1";
+        Mono<User> userMono = userService.saveUser(USER_NAME);
+        User user = userMono.block();
+        assertTrue(USER_NAME.equalsIgnoreCase(user.getName()));
+        Mono<Void> voidUser = userService.deleteUserById(user.getId());
+        assertFalse(userService.userExists(USER_NAME).block());
     }
 }
