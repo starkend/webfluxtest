@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -41,5 +42,12 @@ public class UserServiceTest {
 
         matchingUsers.forEach(u -> System.out.println(u));
         assertFalse(matchingUsers.isEmpty());
+    }
+
+    @Test
+    public void whenSaveUser_thenSucceed() {
+        String USER_NAME = "Bort";
+        Mono<User> user = userService.saveUser(USER_NAME);
+        assertTrue(USER_NAME.equalsIgnoreCase(user.block().getName()));
     }
 }
